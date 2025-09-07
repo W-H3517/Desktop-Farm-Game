@@ -1,28 +1,24 @@
 using System;
 using System.IO;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
+[RequireComponent(typeof(ResourceUser))]
 public class Plant : MonoBehaviour
 {
     private SpriteRenderer _renderer;
+    private ResourceUser _user;
     
     private void Awake()
     {
         _renderer = GetComponent<SpriteRenderer>();
-        // Init("BigPlant_" + Random.Range(0, 15));
+        _user = GetComponent<ResourceUser>();
+        Init("Blueberry_2");
     }
-
-    public bool Init(string spriteName)
+    
+    public void Init(string spriteName)
     {
-        string path = "Sprites/" + spriteName;
-        if (!File.Exists(path))
-        {
-            print(path + " not found");
-            return false;
-        }
-        print(path);
-        _renderer.sprite = Resources.Load<Sprite>(path);
-        return true;
+        _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result );
     }
 }
