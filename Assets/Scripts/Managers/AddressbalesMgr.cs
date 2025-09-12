@@ -85,4 +85,9 @@ public class AddressablesMgr
             }
         }
     }
+
+    public void LoadResources<T>(string resourceName, Action<AsyncOperationHandle<T>> onSuccess) where T : UnityEngine.Object
+    {
+        
+    }
 }
