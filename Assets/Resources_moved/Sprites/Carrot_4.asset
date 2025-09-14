@@ -6,10 +6,10 @@ Sprite:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Carrot_11
+  m_Name: Carrot_4
   m_Rect:
     serializedVersion: 2
-    x: 144
+    x: 80
     y: 0
     width: 16
     height: 16
@@ -21,7 +21,7 @@ Sprite:
   m_IsPolygon: 0
   m_PackingTag: 
   m_RenderDataKey:
-    14cbb2223722a2e42837ac2a11bb6199: 1329358167
+    14cbb2223722a2e42837ac2a11bb6199: -1664143722742511458
   m_AtlasTags: []
   m_SpriteAtlas: {fileID: 0}
   m_RD:
@@ -106,14 +106,14 @@ Sprite:
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
-      x: 144
+      x: 80
       y: 0
       width: 16
       height: 16
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
     settingsRaw: 64
-    uvTransform: {x: 16, y: 152, z: 16, w: 8}
+    uvTransform: {x: 16, y: 88, z: 16, w: 8}
     downscaleMultiplier: 1
   m_AtlasRD:
     serializedVersion: 3
@@ -197,22 +197,22 @@ Sprite:
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
-      x: 144
+      x: 80
       y: 0
       width: 16
       height: 16
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
     settingsRaw: 64
-    uvTransform: {x: 16, y: 152, z: 16, w: 8}
+    uvTransform: {x: 16, y: 88, z: 16, w: 8}
     downscaleMultiplier: 1
   m_PhysicsShape:
-  - - {x: -0.375, y: 0.25}
-    - {x: -0.375, y: -0.5}
-    - {x: 0.3125, y: -0.5}
-    - {x: 0.4375, y: -0.375}
-    - {x: 0.4375, y: 0}
-    - {x: 0.375, y: 0.25}
+  - - {x: -0.25, y: -0.4375}
+    - {x: -0.25, y: -0.5}
+    - {x: 0.25, y: -0.5}
+    - {x: 0.25, y: -0.4375}
+    - {x: 0.0625, y: -0.25}
+    - {x: -0.0625, y: -0.25}
   m_Bones: []
   m_ScriptableObjects: []
-  m_SpriteID: 1e70531ab9415c54f9a70674a349b90f
+  m_SpriteID: e988cb6e916c7e8e0800000000000000

@@ -6,10 +6,10 @@ Sprite:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blueberry_12
+  m_Name: Carrot_6
   m_Rect:
     serializedVersion: 2
-    x: 160
+    x: 112
     y: 0
     width: 16
     height: 16
@@ -21,12 +21,12 @@ Sprite:
   m_IsPolygon: 0
   m_PackingTag: 
   m_RenderDataKey:
-    5bbcabd6d08db6047baf00c21438fba7: -244136308
+    14cbb2223722a2e42837ac2a11bb6199: 669334146
   m_AtlasTags: []
   m_SpriteAtlas: {fileID: 0}
   m_RD:
     serializedVersion: 3
-    texture: {fileID: 2800000, guid: 5bbcabd6d08db6047baf00c21438fba7, type: 3}
+    texture: {fileID: 2800000, guid: 14cbb2223722a2e42837ac2a11bb6199, type: 3}
     alphaTexture: {fileID: 0}
     secondaryTextures: []
     m_SubMeshes:
@@ -106,18 +106,18 @@ Sprite:
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
-      x: 160
+      x: 112
       y: 0
       width: 16
       height: 16
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
     settingsRaw: 64
-    uvTransform: {x: 16, y: 168, z: 16, w: 8}
+    uvTransform: {x: 16, y: 120, z: 16, w: 8}
     downscaleMultiplier: 1
   m_AtlasRD:
     serializedVersion: 3
-    texture: {fileID: 2800000, guid: 5bbcabd6d08db6047baf00c21438fba7, type: 3}
+    texture: {fileID: 2800000, guid: 14cbb2223722a2e42837ac2a11bb6199, type: 3}
     alphaTexture: {fileID: 0}
     secondaryTextures: []
     m_SubMeshes:
@@ -197,24 +197,24 @@ Sprite:
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
-      x: 160
+      x: 112
       y: 0
       width: 16
       height: 16
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
     settingsRaw: 64
-    uvTransform: {x: 16, y: 168, z: 16, w: 8}
+    uvTransform: {x: 16, y: 120, z: 16, w: 8}
     downscaleMultiplier: 1
   m_PhysicsShape:
-  - - {x: -0.375, y: 0.5}
-    - {x: -0.4375, y: 0.375}
-    - {x: -0.5, y: 0.125}
+  - - {x: -0.375, y: 0.125}
+    - {x: -0.5, y: -0.125}
     - {x: -0.5, y: -0.3125}
     - {x: -0.3125, y: -0.5}
-    - {x: 0.3125, y: -0.5}
+    - {x: 0.1875, y: -0.5}
     - {x: 0.4375, y: -0.3125}
-    - {x: 0.4375, y: 0.5}
+    - {x: 0.4375, y: -0.125}
+    - {x: 0.3125, y: 0.125}
   m_Bones: []
   m_ScriptableObjects: []
-  m_SpriteID: 1d4da0911bb41ca48a6a3e0d88cc32dc
+  m_SpriteID: 7984bee990ef7a44db639713952e83f4

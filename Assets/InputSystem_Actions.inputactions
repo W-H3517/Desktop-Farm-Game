@@ -990,6 +990,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "PlantMode",
+            "id": "f593d15b-4fae-4c50-a56c-f12582ec05bd",
+            "actions": [
+                {
+                    "name": "PlantAction",
+                    "type": "Button",
+                    "id": "009b61cb-bcc8-4baa-9e28-070bf275dc46",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0fa726f6-a424-45d1-a251-d73daf5987be",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "PlantAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

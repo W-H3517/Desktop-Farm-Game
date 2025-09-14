@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;     // ← 新增
+using System.Collections.Generic;  // ← 新增
 
 public class TransparentWindow : MonoBehaviour
 {
@@ -24,6 +26,9 @@ public class TransparentWindow : MonoBehaviour
 
     IntPtr hWnd;   // 缓存句柄
     bool clickThrough;
+
+    private Camera _camera;
+    private readonly List<RaycastResult> _uiHits = new List<RaycastResult>(); // 复用列表，避免 GC
 
     void Start()
     {
@@ -47,20 +52,37 @@ public class TransparentWindow : MonoBehaviour
         _camera = Camera.main;
     }
 
-    private Camera _camera;
     void Update()
     {
         if (!_camera || Mouse.current == null) return;
 
         // 稳定的屏幕->世界坐标（2D）
         Vector2 mouseScreen = Mouse.current.position.ReadValue();
+
+        // --- UI 命中检测 ---
+        bool uiHit = IsPointerOverUI(mouseScreen);
+
+        // --- 2D 物理命中检测（保留你原来的逻辑）---
         Vector3 world = _camera.ScreenToWorldPoint(new Vector3(mouseScreen.x, mouseScreen.y, 0f));
         Vector2 p2d = new Vector2(world.x, world.y);
+        bool physicsHit = Physics2D.OverlapPoint(p2d);
 
-        bool hitSomething = Physics2D.OverlapPoint(p2d);
+        // UI 或 物理任意命中 → 关闭穿透；否则开启穿透
+        SetClickthrough(!(uiHit || physicsHit));
+    }
 
-        // 命中可交互 -> 不穿透；否则穿透
-        SetClickthrough(!hitSomething);
+    bool IsPointerOverUI(Vector2 screenPos)
+    {
+        if (!EventSystem.current) return false;
+
+        var ped = new PointerEventData(EventSystem.current)
+        {
+            position = screenPos
+        };
+
+        _uiHits.Clear();
+        EventSystem.current.RaycastAll(ped, _uiHits);
+        return _uiHits.Count > 0;
     }
 
     void SetClickthrough(bool enable)

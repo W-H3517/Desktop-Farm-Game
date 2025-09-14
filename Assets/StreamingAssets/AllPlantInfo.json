@@ -1,4 +1,5 @@
 [
-  {"LocationIndex": 0,"Name" : "Blueberry","StageID" : 2},
-  {"LocationIndex": 1,"Name" : "Blueberry","StageID" : 2}
+  {"LocationIndex": 0,"Name" : "Blueberry","StageID" : 1},
+  {"LocationIndex": 1,"Name" : "Blueberry","StageID" : 2},
+  {"LocationIndex": 38,"Name" : "Blueberry","StageID" : 2}
 ]
