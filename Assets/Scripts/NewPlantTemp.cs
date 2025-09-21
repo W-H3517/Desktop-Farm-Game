@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using PlantingMode;
 
 public class NewPlantTemp : MonoBehaviour
 {
@@ -11,13 +12,7 @@ public class NewPlantTemp : MonoBehaviour
         button = gameObject.GetComponent<Button>();
         button.onClick.AddListener(() =>
         {
-            StartScript.Instance.AddNewPlant();
+            PlantingModeMgr.Instance.AddNewPlant();
         });
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

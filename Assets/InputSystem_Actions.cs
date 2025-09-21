@@ -1089,6 +1089,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectPlace"",
+                    ""type"": ""Value"",
+                    ""id"": ""244b82b7-2928-447e-aaee-ddb2213580bc"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -1100,6 +1109,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""PlantAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0396c8ae-b614-4be0-82b3-ab87aa17f6ed"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""SelectPlace"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1195,6 +1215,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         // PlantMode
         m_PlantMode = asset.FindActionMap("PlantMode", throwIfNotFound: true);
         m_PlantMode_PlantAction = m_PlantMode.FindAction("PlantAction", throwIfNotFound: true);
+        m_PlantMode_SelectPlace = m_PlantMode.FindAction("SelectPlace", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -1657,6 +1678,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlantMode;
     private List<IPlantModeActions> m_PlantModeActionsCallbackInterfaces = new List<IPlantModeActions>();
     private readonly InputAction m_PlantMode_PlantAction;
+    private readonly InputAction m_PlantMode_SelectPlace;
     /// <summary>
     /// Provides access to input actions defined in input action map "PlantMode".
     /// </summary>
@@ -1672,6 +1694,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlantMode/PlantAction".
         /// </summary>
         public InputAction @PlantAction => m_Wrapper.m_PlantMode_PlantAction;
+        /// <summary>
+        /// Provides access to the underlying input action "PlantMode/SelectPlace".
+        /// </summary>
+        public InputAction @SelectPlace => m_Wrapper.m_PlantMode_SelectPlace;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1701,6 +1727,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @PlantAction.started += instance.OnPlantAction;
             @PlantAction.performed += instance.OnPlantAction;
             @PlantAction.canceled += instance.OnPlantAction;
+            @SelectPlace.started += instance.OnSelectPlace;
+            @SelectPlace.performed += instance.OnSelectPlace;
+            @SelectPlace.canceled += instance.OnSelectPlace;
         }
 
         /// <summary>
@@ -1715,6 +1744,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @PlantAction.started -= instance.OnPlantAction;
             @PlantAction.performed -= instance.OnPlantAction;
             @PlantAction.canceled -= instance.OnPlantAction;
+            @SelectPlace.started -= instance.OnSelectPlace;
+            @SelectPlace.performed -= instance.OnSelectPlace;
+            @SelectPlace.canceled -= instance.OnSelectPlace;
         }
 
         /// <summary>
@@ -1976,5 +2008,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPlantAction(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SelectPlace" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelectPlace(InputAction.CallbackContext context);
     }
 }

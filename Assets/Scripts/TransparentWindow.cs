@@ -8,6 +8,14 @@ using System.Collections.Generic;  // ← 新增
 
 public class TransparentWindow : MonoBehaviour
 {
+    public static TransparentWindow Instance => _instance;
+    public static TransparentWindow _instance;
+
+    private void Awake()
+    {
+        _instance = this;
+    }
+
     [DllImport("user32.dll")]  static extern int  GetWindowLong(IntPtr hWnd, int nIndex);
     [DllImport("user32.dll")]  static extern int  SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
     [DllImport("user32.dll", SetLastError = true)]
@@ -25,7 +33,7 @@ public class TransparentWindow : MonoBehaviour
     struct MARGINS { public int cxLeftWidth, cxRightWidth, cyTopHeight, cyBottomHeight; }
 
     IntPtr hWnd;   // 缓存句柄
-    bool clickThrough;
+    public bool clickThrough;
 
     private Camera _camera;
     private readonly List<RaycastResult> _uiHits = new List<RaycastResult>(); // 复用列表，避免 GC
@@ -52,6 +60,10 @@ public class TransparentWindow : MonoBehaviour
         _camera = Camera.main;
     }
 
+    public bool uiHit;
+    public bool physicsHit;
+    
+    
     void Update()
     {
         if (!_camera || Mouse.current == null) return;
@@ -60,12 +72,12 @@ public class TransparentWindow : MonoBehaviour
         Vector2 mouseScreen = Mouse.current.position.ReadValue();
 
         // --- UI 命中检测 ---
-        bool uiHit = IsPointerOverUI(mouseScreen);
+        uiHit = IsPointerOverUI(mouseScreen);
 
         // --- 2D 物理命中检测（保留你原来的逻辑）---
         Vector3 world = _camera.ScreenToWorldPoint(new Vector3(mouseScreen.x, mouseScreen.y, 0f));
         Vector2 p2d = new Vector2(world.x, world.y);
-        bool physicsHit = Physics2D.OverlapPoint(p2d);
+        physicsHit = Physics2D.OverlapPoint(p2d);
 
         // UI 或 物理任意命中 → 关闭穿透；否则开启穿透
         SetClickthrough(!(uiHit || physicsHit));

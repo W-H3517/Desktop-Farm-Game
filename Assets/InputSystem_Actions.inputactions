@@ -1003,6 +1003,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SelectPlace",
+                    "type": "Value",
+                    "id": "244b82b7-2928-447e-aaee-ddb2213580bc",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -1014,6 +1023,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "PlantAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0396c8ae-b614-4be0-82b3-ab87aa17f6ed",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "SelectPlace",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

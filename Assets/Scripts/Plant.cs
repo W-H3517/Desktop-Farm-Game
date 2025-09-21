@@ -39,7 +39,7 @@ public class Plant : MonoBehaviour
         UpdateColliderShape();
     }
     
-    void UpdateColliderShape()
+    private void UpdateColliderShape()
     {
         int shapeCount = _renderer.sprite.GetPhysicsShapeCount();
         polygonCollider.pathCount = shapeCount;
@@ -75,6 +75,7 @@ public class Plant : MonoBehaviour
     {
         // 写入运行时数据
         DataMgr.Instance.AllPlantInfo.Add(Info);
+        gameObject.layer = LayerMask.NameToLayer("Plant");
     }
     
 }

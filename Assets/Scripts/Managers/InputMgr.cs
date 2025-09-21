@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using PlantingMode;
 
 public class InputMgr
 {
@@ -22,7 +23,8 @@ public class InputMgr
         if (map == InputSystem.PlantMode.Get())
         {
             Debug.Log("激活种植模式控制系统");
-            InputSystem.PlantMode.PlantAction.performed += StartScript.Instance.PlantActionCallBack;
+            InputSystem.PlantMode.PlantAction.performed += PlantingModeMgr.Instance.PlantActionCallBack;
+            InputSystem.PlantMode.SelectPlace.performed += PlantingModeMgr.Instance.SelectPlaceCallBack;
         }
         // if (map == InputSystem.Camera.Get())
         // {
@@ -68,7 +70,8 @@ public class InputMgr
         if (map == InputSystem.PlantMode.Get())
         {
             Debug.Log("禁用种植模式控制系统");
-            InputSystem.PlantMode.PlantAction.performed -= StartScript.Instance.PlantActionCallBack;
+            InputSystem.PlantMode.PlantAction.performed -= PlantingModeMgr.Instance.PlantActionCallBack;
+            InputSystem.PlantMode.SelectPlace.performed -= PlantingModeMgr.Instance.SelectPlaceCallBack;
         }
         // if (map == InputSystem.Camera.Get())
         // {
