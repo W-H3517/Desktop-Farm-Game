@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using Data;
 using Tools;
 using UnityEngine;
@@ -28,7 +26,13 @@ public class Plant : MonoBehaviour
         StartCoroutine(InternalInit(info));
     }
     
+    
     // ReSharper disable Unity.PerformanceAnalysis
+    /// <summary>
+    /// 内部初始化用来等待Sprite加载完成后更新其碰撞体形状
+    /// </summary>
+    /// <param name="info"></param>
+    /// <returns></returns>
     private IEnumerator InternalInit(PlantInfo info)
     {
         Info = info;
@@ -38,7 +42,9 @@ public class Plant : MonoBehaviour
         yield return new WaitUntil(() => _renderer.sprite is not null);
         UpdateColliderShape();
     }
-    
+    /// <summary>
+    /// 内部更新碰撞体形状
+    /// </summary>
     private void UpdateColliderShape()
     {
         int shapeCount = _renderer.sprite.GetPhysicsShapeCount();
@@ -62,13 +68,13 @@ public class Plant : MonoBehaviour
     }
     
     /// <summary>
-    /// 放置植物位置预览
+    /// 放置植物位置实时改变预览
     /// </summary>
     /// <param name="locationIndex"></param>
     public void PrePlace(int locationIndex)
     {
         Info.LocationIndex = locationIndex;
-        transform.position = Info.LocationIndex.LocationIndexToVector2();
+        transform.position = locationIndex.LocationIndexToVector2();
     }
     
     public void PlantAction()

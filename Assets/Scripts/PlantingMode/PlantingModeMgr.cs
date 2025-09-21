@@ -9,10 +9,9 @@ namespace PlantingMode
     {
         public static PlantingModeMgr Instance => _instance;
         private static PlantingModeMgr _instance = new PlantingModeMgr();
+        
         private Mouse _mouse;
-        private int _locationIndex;
         private Plant _preLoaded;
-        private Vector3 _position;
         
         private PlantingModeMgr()
         {
@@ -21,9 +20,7 @@ namespace PlantingMode
         
         public void SelectPlaceCallBack(InputAction.CallbackContext ctx)
         {
-            _position = Camera.main.ScreenToWorldPoint(_mouse.position.ReadValue());
-            _locationIndex =  (int)Mathf.Floor(_position.x)  + 20;
-            _preLoaded?.PrePlace(_locationIndex);
+            _preLoaded?.PrePlace((int)Mathf.Floor(Camera.main.ScreenToWorldPoint(_mouse.position.ReadValue()).x)  + 20);
         }
         
         /// <summary>
@@ -53,9 +50,6 @@ namespace PlantingMode
                 _preLoaded.gameObject.layer = LayerMask.NameToLayer("PrePlanting");
             } );
             InputMgr.Instance.Enable(InputMgr.Instance.InputSystem.PlantMode.Get());
-        
         }
-        
-        
     }
 }
