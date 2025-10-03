@@ -41,6 +41,7 @@ public class Plant : MonoBehaviour
         _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result );
         yield return new WaitUntil(() => _renderer.sprite is not null);
         UpdateColliderShape();
+        StartCoroutine(TimeIncressing());
     }
     /// <summary>
     /// 内部更新碰撞体形状
@@ -83,5 +84,24 @@ public class Plant : MonoBehaviour
         DataMgr.Instance.AllPlantInfo.Add(Info);
         gameObject.layer = LayerMask.NameToLayer("Plant");
     }
-    
+
+    // ReSharper disable Unity.PerformanceAnalysis
+    IEnumerator TimeIncressing()
+    {
+        while (true)
+        {
+            Info.GrowingTime += 1;
+            if (Info.GrowingTime >= 10)
+            {
+                Info.GrowingTime = 0;
+                if (Info.StageID == Info.StagesCounter + 3) yield break;
+                var spriteName = Info.Name + "_" + ++Info.StageID;
+                //存在未释放旧有sprite资源问题！！！！！！！！！！！
+                _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result );
+                print(spriteName + "has"+"grown!");
+            }
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
 }

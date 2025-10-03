@@ -1,5 +1,5 @@
 [
-  {"LocationIndex": 0,"Name" : "Blueberry","StageID" : 1},
-  {"LocationIndex": 1,"Name" : "Blueberry","StageID" : 3},
-  {"LocationIndex": 38,"Name" : "Blueberry","StageID" : 2}
+  {"LocationIndex": 0,"Name" : "Blueberry","StageID" : 4,"GrowingTime":0,"StagesCounter" : 6},
+  {"LocationIndex": 1,"Name" : "Blueberry","StageID" : 5,"GrowingTime":0,"StagesCounter" : 6},
+  {"LocationIndex": 38,"Name" : "Blueberry","StageID" : 6, "GrowingTime":0,"StagesCounter" : 6}
 ]

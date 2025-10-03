@@ -26,6 +26,9 @@ namespace Data
         }
         public string Name;
         public int StageID;
+        public double GrowingTime;
+        public int StagesCounter;
+        
 
         public PlantInfo(string name, int stageID, int locationIndex)
         {
