@@ -2,6 +2,8 @@
 
 namespace Data
 {
+    
+    
     public class PlantInfo
     {
         private int _locationIndex;
