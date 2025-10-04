@@ -11,7 +11,7 @@ public class Plant : MonoBehaviour
 {
     private SpriteRenderer _renderer;
     private ResourceUser _user;
-    public PlantInfo Info;
+    public PlantsInScene Info;
     private PolygonCollider2D polygonCollider;
     
     private void Awake()
@@ -21,7 +21,7 @@ public class Plant : MonoBehaviour
         polygonCollider = GetComponent<PolygonCollider2D>();
     }
 
-    public void Init(PlantInfo info)
+    public void Init(PlantsInScene info)
     {
         StartCoroutine(InternalInit(info));
     }
@@ -33,10 +33,10 @@ public class Plant : MonoBehaviour
     /// </summary>
     /// <param name="info"></param>
     /// <returns></returns>
-    private IEnumerator InternalInit(PlantInfo info)
+    private IEnumerator InternalInit(PlantsInScene info)
     {
         Info = info;
-        var spriteName = Info.Name + "_" + Info.StageID;
+        var spriteName = Info.GetName() + "_" + Info.StageID;
         transform.position = Info.LocationIndex.LocationIndexToVector2();
         _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result );
         yield return new WaitUntil(() => _renderer.sprite is not null);
@@ -81,7 +81,7 @@ public class Plant : MonoBehaviour
     public void PlantAction()
     {
         // 写入运行时数据
-        DataMgr.Instance.AllPlantInfo.Add(Info);
+        DataMgr.Instance.AllPlants.Add(Info);
         gameObject.layer = LayerMask.NameToLayer("Plant");
     }
 
@@ -94,8 +94,8 @@ public class Plant : MonoBehaviour
             if (Info.GrowingTime >= 10)
             {
                 Info.GrowingTime = 0;
-                if (Info.StageID == Info.StagesCounter + 3) yield break;
-                var spriteName = Info.Name + "_" + ++Info.StageID;
+                if (Info.StageID == Info.GetStageCount() + 3) yield break;
+                var spriteName = Info.GetName() + "_" + ++Info.StageID;
                 //存在未释放旧有sprite资源问题！！！！！！！！！！！
                 _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result );
                 print(spriteName + "has"+"grown!");

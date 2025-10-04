@@ -2,10 +2,9 @@
 
 namespace Data
 {
-    
-    
-    public class PlantInfo
+    public class PlantsInScene
     {
+        public double GrowingTime;
         private int _locationIndex;
         public int LocationIndex
         {
@@ -26,22 +25,40 @@ namespace Data
                 }
             }
         }
-        public string Name;
         public int StageID;
-        public double GrowingTime;
-        public int StagesCounter;
+        public int BasicInfoID;
         
-
-        public PlantInfo(string name, int stageID, int locationIndex)
+        private PlantBasicInfo _basicInfo;
+        
+        public PlantsInScene(int basicInfoID, int stageID, int locationIndex)
         {
-            Name = name;
+            BasicInfoID = basicInfoID;
+            _basicInfo = DataMgr.Instance.AllBasicPlantInfo[BasicInfoID];
             StageID = stageID;
             LocationIndex = locationIndex;
+            GrowingTime = 0;
         }
 
-        public PlantInfo()
+        public string GetName()
         {
-            
+            _basicInfo ??= DataMgr.Instance.AllBasicPlantInfo[BasicInfoID];
+            return _basicInfo.Name;
         }
+
+        public int GetStageCount()
+        {
+            _basicInfo ??= DataMgr.Instance.AllBasicPlantInfo[BasicInfoID];
+            return _basicInfo.StagesCounter;
+        }
+        
+        public PlantsInScene() { }
+    }
+    
+    
+    public class PlantBasicInfo
+    {
+        public int PlantID;
+        public string Name;
+        public int StagesCounter;
     }
 }

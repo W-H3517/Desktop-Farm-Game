@@ -9,17 +9,21 @@ public class DataMgr
 {
     private static DataMgr _instance = new DataMgr();
     public static DataMgr Instance => _instance;
-    public List<PlantInfo> AllPlantInfo = new ();
+    public List<PlantBasicInfo> AllBasicPlantInfo ;
+    public List<PlantsInScene> AllPlants ;
     
     
     private DataMgr()
     {
-        AllPlantInfo = JsonMgr.Instance.LoadConfigurationData<List<PlantInfo>>("AllPlantInfo");
-        foreach (PlantInfo plantInfo in AllPlantInfo)
+        AllBasicPlantInfo = JsonMgr.Instance.LoadConfigurationData<List<PlantBasicInfo>>("AllPlantBasicInfo");
+        
+        AllPlants = JsonMgr.Instance.LoadConfigurationData<List<PlantsInScene>>("AllPlants");
+        
+        foreach (PlantsInScene plant in AllPlants)
         {
             AddressablesMgr.Instance.LoadResource("Plant", (AsyncOperationHandle<GameObject> handle) =>
             {
-                GameObject.Instantiate(handle.Result).GetComponent<Plant>().Init(plantInfo);
+                GameObject.Instantiate(handle.Result).GetComponent<Plant>().Init(plant);
             });
         }
     }
