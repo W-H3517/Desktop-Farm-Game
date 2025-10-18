@@ -1,4 +1,4 @@
 [
-  {"PlantID": 0,"Name" : "Blueberry","StagesCounter" : 6},
-  {"PlantID": 1,"Name" : "Carrot","StagesCounter" : 5}
+  {"PlantID": 0,"Name" : "Blueberry","StagesCounter" : 6,"GrownNeedTime": 7},
+  {"PlantID": 1,"Name" : "Carrot","StagesCounter" : 5,"GrownNeedTime": 4}
 ]

@@ -1,0 +1,1118 @@
+fileFormatVersion: 2
+guid: 16931d8df86b7c74588053e11901dbf3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1345711352304684387
+    second: MagicianAnimation_0
+  - first:
+      213: 2091387521409519015
+    second: MagicianAnimation_1
+  - first:
+      213: 4399249586683241967
+    second: MagicianAnimation_2
+  - first:
+      213: -4809723049545079675
+    second: MagicianAnimation_3
+  - first:
+      213: 8547981970048898164
+    second: MagicianAnimation_4
+  - first:
+      213: -8456715616543153256
+    second: MagicianAnimation_5
+  - first:
+      213: -6402116966559454747
+    second: MagicianAnimation_6
+  - first:
+      213: 899430997710480577
+    second: MagicianAnimation_7
+  - first:
+      213: -164455422204625185
+    second: MagicianAnimation_8
+  - first:
+      213: 3311978346198608655
+    second: MagicianAnimation_9
+  - first:
+      213: 452050919671596290
+    second: MagicianAnimation_10
+  - first:
+      213: 3264172045884721257
+    second: MagicianAnimation_11
+  - first:
+      213: 4207937722578830565
+    second: MagicianAnimation_12
+  - first:
+      213: 5590298068010803312
+    second: MagicianAnimation_13
+  - first:
+      213: -2349844696508053129
+    second: MagicianAnimation_14
+  - first:
+      213: 1559207033831638406
+    second: MagicianAnimation_15
+  - first:
+      213: -4378610192156245009
+    second: MagicianAnimation_16
+  - first:
+      213: 8188833833108814013
+    second: MagicianAnimation_17
+  - first:
+      213: -8795582101021250645
+    second: MagicianAnimation_18
+  - first:
+      213: 2620250406487459790
+    second: MagicianAnimation_19
+  - first:
+      213: 4433685605282152703
+    second: MagicianAnimation_20
+  - first:
+      213: 7155428058811044775
+    second: MagicianAnimation_21
+  - first:
+      213: -2488637026075100709
+    second: MagicianAnimation_22
+  - first:
+      213: 2518811349032106980
+    second: MagicianAnimation_23
+  - first:
+      213: 1994659644254997884
+    second: MagicianAnimation_24
+  - first:
+      213: 648081344379063353
+    second: MagicianAnimation_25
+  - first:
+      213: 298166401790450406
+    second: MagicianAnimation_26
+  - first:
+      213: 4361429085153653019
+    second: MagicianAnimation_27
+  - first:
+      213: -6276423565539570110
+    second: MagicianAnimation_28
+  - first:
+      213: -6828086474097320031
+    second: MagicianAnimation_29
+  - first:
+      213: 9011956980575075106
+    second: MagicianAnimation_30
+  - first:
+      213: -567248510622062535
+    second: MagicianAnimation_31
+  - first:
+      213: -9047381273596723637
+    second: MagicianAnimation_32
+  - first:
+      213: -7561971123007717850
+    second: MagicianAnimation_33
+  - first:
+      213: 8581486332910023132
+    second: MagicianAnimation_34
+  - first:
+      213: -3638991679065794043
+    second: MagicianAnimation_35
+  - first:
+      213: 1966892237746363411
+    second: MagicianAnimation_36
+  - first:
+      213: 1750121822622594076
+    second: MagicianAnimation_37
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MagicianAnimation_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 225
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36dc454585deca210800000000000000
+      internalID: 1345711352304684387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_1
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 225
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ad8c4dbed9160d10800000000000000
+      internalID: 2091387521409519015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_2
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 225
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe5e98cd0364d0d30800000000000000
+      internalID: 4399249586683241967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_3
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 225
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5846bd39e5e604db0800000000000000
+      internalID: -4809723049545079675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_4
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 225
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4745537005880a670800000000000000
+      internalID: 8547981970048898164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_5
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 225
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 893627dc3f5b3aa80800000000000000
+      internalID: -8456715616543153256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_6
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 183
+        width: 37
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e9e8bde98c1727a0800000000000000
+      internalID: -6402116966559454747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_7
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 184
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c4228e1abb6b7c00800000000000000
+      internalID: 899430997710480577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_8
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 184
+        width: 36
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fde3b123aacb7bdf0800000000000000
+      internalID: -164455422204625185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_9
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 184
+        width: 36
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0b24fc12c286fd20800000000000000
+      internalID: 3311978346198608655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_10
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 184
+        width: 36
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2050a679ae1064600800000000000000
+      internalID: 452050919671596290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_11
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 218
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96808b07e2bac4d20800000000000000
+      internalID: 3264172045884721257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_12
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 183
+        width: 36
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e407476019956a30800000000000000
+      internalID: 4207937722578830565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_13
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 183
+        width: 36
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0702654697ab49d40800000000000000
+      internalID: 5590298068010803312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_14
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 180
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7794d43d2bca36fd0800000000000000
+      internalID: -2349844696508053129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_15
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 180
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68543d6498a63a510800000000000000
+      internalID: 1559207033831638406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_16
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 181
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe34f96aa3d0c33c0800000000000000
+      internalID: -4378610192156245009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_17
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 135
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db8b6232cf494a170800000000000000
+      internalID: 8188833833108814013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_18
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 135
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bab28db1ea0dfe580800000000000000
+      internalID: -8795582101021250645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_19
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 136
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec7024dacdffc5420800000000000000
+      internalID: 2620250406487459790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_20
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 138
+        width: 37
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff00b9c319d978d30800000000000000
+      internalID: 4433685605282152703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_21
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 138
+        width: 37
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a39b4d88ef2d4360800000000000000
+      internalID: 7155428058811044775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_22
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 92
+        width: 37
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd9b8e56fc5967dd0800000000000000
+      internalID: -2488637026075100709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_23
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 93
+        width: 38
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ebf743a39d94f220800000000000000
+      internalID: 2518811349032106980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_24
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 94
+        width: 40
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7d40a7d0647eab10800000000000000
+      internalID: 1994659644254997884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_25
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 93
+        width: 38
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93c854d8c827ef800800000000000000
+      internalID: 648081344379063353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_26
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 92
+        width: 37
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ea1dae33cc432400800000000000000
+      internalID: 298166401790450406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_27
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 92
+        width: 37
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b11f3a525a8e68c30800000000000000
+      internalID: 4361429085153653019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_28
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 45
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24e8f14650aa5e8a0800000000000000
+      internalID: -6276423565539570110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_29
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 45
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1af97cf4783cd31a0800000000000000
+      internalID: -6828086474097320031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_30
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 45
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22b774e5027e01d70800000000000000
+      internalID: 9011956980575075106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_31
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 45
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 938a0092c7ab028f0800000000000000
+      internalID: -567248510622062535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_32
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 0
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4efebfaaae317280800000000000000
+      internalID: -9047381273596723637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_33
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62efc53245b7e0790800000000000000
+      internalID: -7561971123007717850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_34
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 0
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd1b8f56a50971770800000000000000
+      internalID: 8581486332910023132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_35
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 0
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50a5eac1954bf7dc0800000000000000
+      internalID: -3638991679065794043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_36
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 0
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31c5856b11ecb4b10800000000000000
+      internalID: 1966892237746363411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicianAnimation_37
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 0
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c14341f668ea94810800000000000000
+      internalID: 1750121822622594076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      MagicianAnimation_0: 1345711352304684387
+      MagicianAnimation_1: 2091387521409519015
+      MagicianAnimation_10: 452050919671596290
+      MagicianAnimation_11: 3264172045884721257
+      MagicianAnimation_12: 4207937722578830565
+      MagicianAnimation_13: 5590298068010803312
+      MagicianAnimation_14: -2349844696508053129
+      MagicianAnimation_15: 1559207033831638406
+      MagicianAnimation_16: -4378610192156245009
+      MagicianAnimation_17: 8188833833108814013
+      MagicianAnimation_18: -8795582101021250645
+      MagicianAnimation_19: 2620250406487459790
+      MagicianAnimation_2: 4399249586683241967
+      MagicianAnimation_20: 4433685605282152703
+      MagicianAnimation_21: 7155428058811044775
+      MagicianAnimation_22: -2488637026075100709
+      MagicianAnimation_23: 2518811349032106980
+      MagicianAnimation_24: 1994659644254997884
+      MagicianAnimation_25: 648081344379063353
+      MagicianAnimation_26: 298166401790450406
+      MagicianAnimation_27: 4361429085153653019
+      MagicianAnimation_28: -6276423565539570110
+      MagicianAnimation_29: -6828086474097320031
+      MagicianAnimation_3: -4809723049545079675
+      MagicianAnimation_30: 9011956980575075106
+      MagicianAnimation_31: -567248510622062535
+      MagicianAnimation_32: -9047381273596723637
+      MagicianAnimation_33: -7561971123007717850
+      MagicianAnimation_34: 8581486332910023132
+      MagicianAnimation_35: -3638991679065794043
+      MagicianAnimation_36: 1966892237746363411
+      MagicianAnimation_37: 1750121822622594076
+      MagicianAnimation_4: 8547981970048898164
+      MagicianAnimation_5: -8456715616543153256
+      MagicianAnimation_6: -6402116966559454747
+      MagicianAnimation_7: 899430997710480577
+      MagicianAnimation_8: -164455422204625185
+      MagicianAnimation_9: 3311978346198608655
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

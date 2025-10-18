@@ -51,6 +51,12 @@ namespace Data
             return _basicInfo.StagesCounter;
         }
         
+        public int GetGrownNeedTime()
+        {
+            _basicInfo ??= DataMgr.Instance.AllBasicPlantInfo[BasicInfoID];
+            return _basicInfo.GrownNeedTime;
+        }
+        
         public PlantsInScene() { }
     }
     
@@ -60,5 +66,6 @@ namespace Data
         public int PlantID;
         public string Name;
         public int StagesCounter;
+        public int GrownNeedTime;
     }
 }

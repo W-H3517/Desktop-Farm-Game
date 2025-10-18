@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Data;
@@ -11,7 +12,7 @@ public class Plant : MonoBehaviour
 {
     private SpriteRenderer _renderer;
     private ResourceUser _user;
-    public PlantsInScene Info;
+    private PlantsInScene _info;
     private PolygonCollider2D polygonCollider;
     
     private void Awake()
@@ -35,9 +36,9 @@ public class Plant : MonoBehaviour
     /// <returns></returns>
     private IEnumerator InternalInit(PlantsInScene info)
     {
-        Info = info;
-        var spriteName = Info.GetName() + "_" + Info.StageID;
-        transform.position = Info.LocationIndex.LocationIndexToVector2();
+        _info = info;
+        var spriteName = _info.GetName() + "_" + _info.StageID;
+        transform.position = _info.LocationIndex.LocationIndexToVector2();
         _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result );
         yield return new WaitUntil(() => _renderer.sprite is not null);
         UpdateColliderShape();
@@ -74,14 +75,14 @@ public class Plant : MonoBehaviour
     /// <param name="locationIndex"></param>
     public void PrePlace(int locationIndex)
     {
-        Info.LocationIndex = locationIndex;
+        _info.LocationIndex = locationIndex;
         transform.position = locationIndex.LocationIndexToVector2();
     }
     
     public void PlantAction()
     {
         // 写入运行时数据
-        DataMgr.Instance.AllPlants.Add(Info);
+        DataMgr.Instance.AllPlants.Add(_info);
         gameObject.layer = LayerMask.NameToLayer("Plant");
     }
 
@@ -90,12 +91,12 @@ public class Plant : MonoBehaviour
     {
         while (true)
         {
-            Info.GrowingTime += 1;
-            if (Info.GrowingTime >= 10)
+            _info.GrowingTime += 1;
+            if (_info.GrowingTime >= _info.GetGrownNeedTime())
             {
-                Info.GrowingTime = 0;
-                if (Info.StageID == Info.GetStageCount() + 3) yield break;
-                var spriteName = Info.GetName() + "_" + ++Info.StageID;
+                _info.GrowingTime = 0;
+                if (_info.StageID == _info.GetStageCount() + 3) yield break;
+                var spriteName = _info.GetName() + "_" + ++_info.StageID;
                 //存在未释放旧有sprite资源问题！！！！！！！！！！！
                 _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result );
                 print(spriteName + "has"+"grown!");
