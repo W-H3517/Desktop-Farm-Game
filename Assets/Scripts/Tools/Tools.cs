@@ -13,7 +13,8 @@ namespace Tools
 
         public static Vector2 LocationIndexToVector2(this int locationIndex)
         {
-            return new Vector2(locationIndex-20f, -7f);
+            return new Vector2(locationIndex-20f, DataMgr.Instance.WorldBottomLocation);
+            // return new Vector2(locationIndex-20f, -7f);
         }
     }
 }
