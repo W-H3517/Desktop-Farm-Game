@@ -22,30 +22,28 @@ public class Plant : MonoBehaviour
         polygonCollider = GetComponent<PolygonCollider2D>();
     }
 
-    public void Init(PlantsInScene info)
-    {
-        StartCoroutine(InternalInit(info));
-    }
-    
-    
-    // ReSharper disable Unity.PerformanceAnalysis
-    /// <summary>
-    /// 内部初始化用来等待Sprite加载完成后更新其碰撞体形状
-    /// </summary>
-    /// <param name="info"></param>
-    /// <returns></returns>
-    private IEnumerator InternalInit(PlantsInScene info)
+    private void InternalInit(PlantsInScene info)
     {
         _info = info;
         var spriteName = _info.GetName() + "_" + _info.StageID;
         transform.position = _info.LocationIndex.LocationIndexToVector2();
         _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result );
-        yield return new WaitUntil(() => _renderer.sprite is not null);
-        UpdateColliderShape();
-        StartCoroutine(TimeIncressing());
     }
+
     /// <summary>
-    /// 内部更新碰撞体形状
+    /// 初始化植物方法
+    /// </summary>
+    /// <param name="info">植物场景信息实体</param>
+    /// <param name="isPlanting">此次操作是否为玩家手动开始种植</param>
+    public void Init(PlantsInScene info, bool isPlanting = false)
+    {
+        InternalInit(info);
+        if (!isPlanting) StartCoroutine(GrowingWithTimeIncressing());
+    }
+    
+    
+    /// <summary>
+    /// 更新碰撞体形状
     /// </summary>
     private void UpdateColliderShape()
     {
@@ -79,15 +77,19 @@ public class Plant : MonoBehaviour
         transform.position = locationIndex.LocationIndexToVector2();
     }
     
+    /// <summary>
+    /// 种植动作的回调
+    /// </summary>
     public void PlantAction()
     {
         // 写入运行时数据
         DataMgr.Instance.AllPlants.Add(_info);
         gameObject.layer = LayerMask.NameToLayer("Plant");
+        StartCoroutine(GrowingWithTimeIncressing());
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
-    IEnumerator TimeIncressing()
+    IEnumerator GrowingWithTimeIncressing()
     {
         while (true)
         {
@@ -98,7 +100,12 @@ public class Plant : MonoBehaviour
                 if (_info.StageID == _info.GetStageCount() + 3) yield break;
                 var spriteName = _info.GetName() + "_" + ++_info.StageID;
                 //存在未释放旧有sprite资源问题！！！！！！！！！！！
-                _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result );
+                _user.Load<Sprite>(spriteName, handle =>
+                {
+                    _renderer.sprite = handle.Result;
+                    //每次生长，更新碰撞体
+                    UpdateColliderShape();
+                } );
                 print(spriteName + "has"+"grown!");
             }
             yield return new WaitForSeconds(1f);

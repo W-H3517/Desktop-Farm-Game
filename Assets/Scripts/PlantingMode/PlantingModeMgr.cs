@@ -46,7 +46,7 @@ namespace PlantingMode
             AddressablesMgr.Instance.LoadResource("Plant", (AsyncOperationHandle<GameObject> handle) =>
             {
                 _preLoaded = GameObject.Instantiate(handle.Result).GetComponent<Plant>();
-                _preLoaded.Init(new PlantsInScene(basicInfoID,4,0));
+                _preLoaded.Init(new PlantsInScene(basicInfoID,4,0),true);
                 _preLoaded.gameObject.layer = LayerMask.NameToLayer("PrePlanting");
             } );
             InputMgr.Instance.Enable(InputMgr.Instance.InputSystem.PlantMode.Get());
