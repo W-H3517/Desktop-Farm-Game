@@ -15,9 +15,9 @@ namespace Data
                 {
                     _locationIndex = 0;
                 }
-                else if (value > 38)
+                else if (value > 39)
                 {
-                    _locationIndex = 38;
+                    _locationIndex = 39;
                 }
                 else
                 {

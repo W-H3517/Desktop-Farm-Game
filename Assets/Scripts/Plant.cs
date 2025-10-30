@@ -14,6 +14,7 @@ public class Plant : MonoBehaviour
     private ResourceUser _user;
     private PlantsInScene _info;
     private PolygonCollider2D polygonCollider;
+    public int LocationIndex => _info.LocationIndex;
     
     private void Awake()
     {
@@ -24,9 +25,9 @@ public class Plant : MonoBehaviour
 
     private void InternalInit(PlantsInScene info)
     {
-        _info = info;
+        
         var spriteName = _info.GetName() + "_" + _info.StageID;
-        transform.position = _info.LocationIndex.LocationIndexToVector2();
+        
         _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result );
     }
 
@@ -37,8 +38,21 @@ public class Plant : MonoBehaviour
     /// <param name="isPlanting">此次操作是否为玩家手动开始种植</param>
     public void Init(PlantsInScene info, bool isPlanting = false)
     {
-        InternalInit(info);
-        if (!isPlanting) StartCoroutine(GrowingWithTimeIncressing());
+        // InternalInit(info);
+        _info = info;
+        transform.position = _info.LocationIndex.LocationIndexToVector2();
+        if (isPlanting)
+        {
+            //种植模式预览效果
+            var spriteName = _info.GetName() + "_" + (3+info.GetStageCount());
+            _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result );
+        }
+        else
+        {
+            var spriteName = _info.GetName() + "_" + _info.StageID;
+            _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result);
+            StartCoroutine(GrowingWithTimeIncressing());
+        }
     }
     
     
@@ -83,8 +97,10 @@ public class Plant : MonoBehaviour
     public void PlantAction()
     {
         // 写入运行时数据
-        DataMgr.Instance.AllPlants.Add(_info);
+        DataMgr.Instance.AddPlant(_info);
         gameObject.layer = LayerMask.NameToLayer("Plant");
+        var spriteName = _info.GetName() + "_" + _info.StageID;
+        _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result);
         StartCoroutine(GrowingWithTimeIncressing());
     }
 
@@ -105,8 +121,8 @@ public class Plant : MonoBehaviour
                     _renderer.sprite = handle.Result;
                     //每次生长，更新碰撞体
                     UpdateColliderShape();
-                } );
-                print(spriteName + "has"+"grown!");
+                });
+                print(spriteName + "has" + "grown!");
             }
             yield return new WaitForSeconds(1f);
         }

@@ -20,7 +20,7 @@ namespace PlantingMode
         
         public void SelectPlaceCallBack(InputAction.CallbackContext ctx)
         {
-            _preLoaded?.PrePlace((int)Mathf.Floor(Camera.main.ScreenToWorldPoint(_mouse.position.ReadValue()).x)  + 20);
+            _preLoaded?.PrePlace((int)Mathf.Floor(Camera.main.ScreenToWorldPoint(_mouse.position.ReadValue()).x) + 20);
         }
         
         /// <summary>
@@ -31,8 +31,14 @@ namespace PlantingMode
         {
             if (TransparentWindow.Instance != null && TransparentWindow.Instance.uiHit) return;
             //_preLoaded.transform.position坐标在左下角，可能不包括collider，因此加一个offset
-            if (Physics2D.OverlapPoint(_preLoaded.transform.position+Vector3.one*0.5f, LayerMask.GetMask("Plant")))
+            // if (Physics2D.OverlapPoint(_preLoaded.transform.position + Vector3.one * 0.5f, LayerMask.GetMask("Plant")))
+            // {
+            //     return;
+            // }
+            //重写检测逻辑，使用性能更低的数据层面检测，而不是每次都用射线检测！
+            if (DataMgr.Instance.AllPlants[_preLoaded.LocationIndex] != null)
             {
+                Debug.LogError("Location occupied");
                 return;
             }
             _preLoaded.PlantAction();

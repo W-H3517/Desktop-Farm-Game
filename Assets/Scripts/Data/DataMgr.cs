@@ -10,8 +10,13 @@ public class DataMgr
 {
     private static DataMgr _instance = new DataMgr();
     public static DataMgr Instance => _instance;
-    public List<PlantBasicInfo> AllBasicPlantInfo ;
-    public List<PlantsInScene> AllPlants ;
+    public List<PlantBasicInfo> AllBasicPlantInfo;
+
+    //涉及到排序操作，封装起来更安全
+    // private readonly List<PlantsInScene> allPlants = new List<PlantsInScene>();
+    // public IReadOnlyList<PlantsInScene> AllPlants => allPlants;
+
+    public PlantsInScene[] AllPlants = new PlantsInScene[40];
     public float WorldBottomLocation { get; }
     
     private DataMgr()
@@ -19,10 +24,12 @@ public class DataMgr
         WorldBottomLocation = GetBottomDistance();
         AllBasicPlantInfo = JsonMgr.Instance.LoadConfigurationData<List<PlantBasicInfo>>("AllPlantBasicInfo");
         
-        AllPlants = JsonMgr.Instance.LoadConfigurationData<List<PlantsInScene>>("AllPlants");
+        var allPlants = JsonMgr.Instance.LoadConfigurationData<List<PlantsInScene>>("AllPlants");
         
-        foreach (PlantsInScene plant in AllPlants)
+        foreach (PlantsInScene plant in allPlants)
         {
+            //放在数组对应位置
+            AllPlants[plant.LocationIndex] = plant;
             AddressablesMgr.Instance.LoadResource("Plant", (AsyncOperationHandle<GameObject> handle) =>
             {
                 GameObject.Instantiate(handle.Result).GetComponent<Plant>().Init(plant);
@@ -33,12 +40,21 @@ public class DataMgr
     public void LoadData()
     {
     }
-    
+
     public void SaveData()
     {
-        
+
     }
-    
+
+    /// <summary>
+    /// Add plant object to DataMgr by its location index.
+    /// </summary>
+    /// <param name="plant"></param>
+    public void AddPlant(PlantsInScene plant)
+    {
+        AllPlants[plant.LocationIndex] = plant;
+    }
+
     public void Restart()
     {
         _instance = new DataMgr();
