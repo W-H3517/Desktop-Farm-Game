@@ -28,40 +28,27 @@ namespace Data
         public int StageID;
         public int BasicInfoID;
         
-        private PlantBasicInfo _basicInfo;
+        //返回引用的一个表达式主体属性，不占字段内存，相当于一个方法。（随BasicInfoID获取最新指向）
+        private ref readonly PlantBasicInfo _basicInfo => ref DataMgr.Instance.AllBasicPlantInfo[BasicInfoID];
         
         public PlantsInScene(int basicInfoID, int stageID, int locationIndex)
         {
             BasicInfoID = basicInfoID;
-            _basicInfo = DataMgr.Instance.AllBasicPlantInfo[BasicInfoID];
+            // _basicInfo = DataMgr.Instance.AllBasicPlantInfo[BasicInfoID];
             StageID = stageID;
             LocationIndex = locationIndex;
             GrowingTime = 0;
         }
 
-        public string GetName()
-        {
-            _basicInfo ??= DataMgr.Instance.AllBasicPlantInfo[BasicInfoID];
-            return _basicInfo.Name;
-        }
+        public string GetName() => _basicInfo.Name;
+        public int GetStageCount() => _basicInfo.StagesCounter;
+        public int GetGrownNeedTime() => _basicInfo.GrownNeedTime;
 
-        public int GetStageCount()
-        {
-            _basicInfo ??= DataMgr.Instance.AllBasicPlantInfo[BasicInfoID];
-            return _basicInfo.StagesCounter;
-        }
-        
-        public int GetGrownNeedTime()
-        {
-            _basicInfo ??= DataMgr.Instance.AllBasicPlantInfo[BasicInfoID];
-            return _basicInfo.GrownNeedTime;
-        }
-        
         public PlantsInScene() { }
     }
     
     
-    public class PlantBasicInfo
+    public struct PlantBasicInfo
     {
         public int PlantID;
         public string Name;

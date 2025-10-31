@@ -15,11 +15,14 @@ public class JsonMgr
         File.WriteAllText(path, jsonstring, System.Text.Encoding.UTF8);
     }
     
-    public T LoadConfigurationData<T>(string fileName) where T : new()
+    public T LoadConfigurationData<T>(string fileName)
     {
         string path = Application.streamingAssetsPath + "/" + fileName + ".json";
-        if (!File.Exists(path)) 
-            return new T();
+        if (!File.Exists(path))
+        {
+            Debug.LogError($"{path}内找不到配置文件 {fileName}.json，返回默认值/Null。");
+            return default!;
+        }
         string jsonString = File.ReadAllText(path);
         return JsonMapper.ToObject<T>(jsonString);
     }

@@ -10,7 +10,7 @@ public class DataMgr
 {
     private static DataMgr _instance = new DataMgr();
     public static DataMgr Instance => _instance;
-    public List<PlantBasicInfo> AllBasicPlantInfo;
+    public readonly PlantBasicInfo[] AllBasicPlantInfo;
 
     //涉及到排序操作，封装起来更安全
     // private readonly List<PlantsInScene> allPlants = new List<PlantsInScene>();
@@ -22,7 +22,7 @@ public class DataMgr
     private DataMgr()
     {
         WorldBottomLocation = GetBottomDistance();
-        AllBasicPlantInfo = JsonMgr.Instance.LoadConfigurationData<List<PlantBasicInfo>>("AllPlantBasicInfo");
+        AllBasicPlantInfo = JsonMgr.Instance.LoadConfigurationData<PlantBasicInfo[]>("AllPlantBasicInfo");
         
         var allPlants = JsonMgr.Instance.LoadConfigurationData<List<PlantsInScene>>("AllPlants");
         
@@ -60,6 +60,7 @@ public class DataMgr
         _instance = new DataMgr();
     }
     
+    //获取任务栏高度相关逻辑
     [StructLayout(LayoutKind.Sequential)]
     private struct RECT
     {
