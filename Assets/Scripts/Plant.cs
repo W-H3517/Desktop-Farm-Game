@@ -21,8 +21,36 @@ public class Plant : MonoBehaviour
         _renderer = GetComponent<SpriteRenderer>();
         _user = GetComponent<ResourceUser>();
         polygonCollider = GetComponent<PolygonCollider2D>();
+        EventCenter.Instance.AddEventListener<int>("PlantMerged",OnPlantMerged);
     }
 
+    private void OnDestroy()
+    {
+        EventCenter.Instance.RemoveEventListener<int>("PlantMerged",OnPlantMerged);
+    }
+
+    private void OnPlantMerged(int locationIndex)
+    {
+        //如果被合并但不是父亲，则失活
+        if(_info.MergedState is { IsMerged: true, IsFather: false }) gameObject.SetActive(false);
+        //如果合并者是自己（被合并是父亲），激活且更新显示
+        else if(_info.LocationIndex == locationIndex)
+        {
+            if(!gameObject.activeSelf) gameObject.SetActive(true);
+            var spriteName = _info.GetName() + "_" + 3;
+            _user.Load<Sprite>(spriteName, handle =>
+            {
+                _renderer.sprite = handle.Result;
+                UpdateColliderShape();
+            });
+        }
+        //如果成熟，且未被合并
+        else if (_info.IsGrown && !_info.MergedState.IsMerged)
+        {
+            if(!gameObject.activeSelf) gameObject.SetActive(true);
+        }
+    }
+    
     private void InternalInit(PlantsInScene info)
     {
         
@@ -113,7 +141,6 @@ public class Plant : MonoBehaviour
             if (_info.GrowingTime >= _info.GetGrownNeedTime())
             {
                 _info.GrowingTime = 0;
-                if (_info.StageID == _info.GetStageCount() + 3) yield break;
                 var spriteName = _info.GetName() + "_" + ++_info.StageID;
                 //存在未释放旧有sprite资源问题！！！！！！！！！！！
                 _user.Load<Sprite>(spriteName, handle =>
@@ -122,7 +149,19 @@ public class Plant : MonoBehaviour
                     //每次生长，更新碰撞体
                     UpdateColliderShape();
                 });
-                print(spriteName + "has" + "grown!");
+                if (_info.IsGrown)
+                {
+                    EventCenter.Instance.EventTrigger("PlantGrown", _info.LocationIndex);
+                    print(spriteName + "has" + "grown!");
+                    
+                    
+                    // var nextIndex = _info.LocationIndex + 1;
+                    // if (nextIndex <= 39 && DataMgr.Instance.AllPlants[nextIndex] == _info)
+                    // {
+                    //     //处理合并逻辑
+                    // }
+                    yield break;
+                }
             }
             yield return new WaitForSeconds(1f);
         }

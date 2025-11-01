@@ -25,6 +25,8 @@ public class DataMgr
         AllBasicPlantInfo = JsonMgr.Instance.LoadConfigurationData<PlantBasicInfo[]>("AllPlantBasicInfo");
         
         var allPlants = JsonMgr.Instance.LoadConfigurationData<List<PlantsInScene>>("AllPlants");
+
+        int count = 0;
         
         foreach (PlantsInScene plant in allPlants)
         {
@@ -33,6 +35,10 @@ public class DataMgr
             AddressablesMgr.Instance.LoadResource("Plant", (AsyncOperationHandle<GameObject> handle) =>
             {
                 GameObject.Instantiate(handle.Result).GetComponent<Plant>().Init(plant);
+                if (++count == allPlants.Count)
+                {
+                    HarvestModeMgr.Instance.CheckMergeForAllPlants();
+                }
             });
         }
     }
