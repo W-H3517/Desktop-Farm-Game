@@ -15,103 +15,13 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 1aa62d6ebc24e8248a5711e6ff9882a6
   m_SerializeEntries:
-  - m_GUID: 022a0d8bd1d653d468cfbabcfea89f1f
-    m_Address: Blueberry_4
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1269b3b413cdb8d469f6cdf52a71599b
-    m_Address: Carrot_0
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1b61cd03bd08e054c93078eb546426b9
-    m_Address: Carrot_2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1d80feb762866e748854dbd87ffa00ee
-    m_Address: Carrot_4
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 362dda546f728464393a801c1021ca4b
-    m_Address: Blueberry_9
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3787a61b9ae03af49843e6d359419000
-    m_Address: Carrot_8
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3f2cfa852e74d0b468e4319dbd420e82
-    m_Address: Blueberry_5
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 49a54b31ee9aa1046aa8b63a76978742
-    m_Address: Carrot_1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5cc40578d14c9c5409a964c0d4d2b170
-    m_Address: Blueberry_8
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6922c6800af44e14d81fd934b166a040
-    m_Address: Blueberry_1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 711997cca69c0ed4badacfb971381e72
-    m_Address: Blueberry_0
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 75c525a41a61d264286cd30c3766da2c
-    m_Address: Blueberry_7
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 832ce28a2cfce0844a42fb9e639a5371
-    m_Address: Blueberry_3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8629ae9c482897a498453e553dcedf82
-    m_Address: Carrot_5
+  - m_GUID: 36d0503ac380ec64f91c0e47aece99f4
+    m_Address: PlantStatesSprites
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9ee2bd8d9832e9f49a63aadfbbde1e5b
     m_Address: Plant
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: aa7d4eee2a577f94f96ff516dab64f17
-    m_Address: Carrot_3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b10f18d8c63f17547a906253eaf64e2f
-    m_Address: Blueberry_2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bdaf6fe19776b014ea4f175fb4696827
-    m_Address: Carrot_6
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d6f3eead553485f4a849d55c3c1f6eb2
-    m_Address: Blueberry_6
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: fb4ae74808255904a9f2510c69a69d4a
-    m_Address: Carrot_7
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

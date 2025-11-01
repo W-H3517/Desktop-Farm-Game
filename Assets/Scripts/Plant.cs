@@ -6,6 +6,7 @@ using Tools;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.U2D;
 
 [RequireComponent(typeof(ResourceUser))]
 public class Plant : MonoBehaviour
@@ -15,6 +16,7 @@ public class Plant : MonoBehaviour
     private PlantsInScene _info;
     private PolygonCollider2D polygonCollider;
     public int LocationIndex => _info.LocationIndex;
+    private SpriteAtlas _atlas;
     
     private void Awake()
     {
@@ -38,11 +40,8 @@ public class Plant : MonoBehaviour
         {
             if(!gameObject.activeSelf) gameObject.SetActive(true);
             var spriteName = _info.GetName() + "_" + 3;
-            _user.Load<Sprite>(spriteName, handle =>
-            {
-                _renderer.sprite = handle.Result;
-                UpdateColliderShape();
-            });
+            _renderer.sprite = _atlas.GetSprite(spriteName);
+            UpdateColliderShape();
         }
         //如果成熟，且未被合并
         else if (_info.IsGrown && !_info.MergedState.IsMerged)
@@ -73,12 +72,23 @@ public class Plant : MonoBehaviour
         {
             //种植模式预览效果
             var spriteName = _info.GetName() + "_" + (3+info.GetStageCount());
-            _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result );
+            _user.Load<SpriteAtlas>("PlantStatesSprites", (handle) =>
+            {
+                _atlas = handle.Result;
+                Debug.Log("atlas loaded");
+                _renderer.sprite = _atlas.GetSprite(spriteName);
+            });
         }
         else
         {
             var spriteName = _info.GetName() + "_" + _info.StageID;
-            _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result);
+            _user.Load<SpriteAtlas>("PlantStatesSprites", (handle) =>
+            {
+                _atlas = handle.Result;
+                Debug.Log("atlas loaded");
+                _renderer.sprite = _atlas.GetSprite(spriteName);
+            });
+            
             StartCoroutine(GrowingWithTimeIncressing());
         }
     }
@@ -128,7 +138,7 @@ public class Plant : MonoBehaviour
         DataMgr.Instance.AddPlant(_info);
         gameObject.layer = LayerMask.NameToLayer("Plant");
         var spriteName = _info.GetName() + "_" + _info.StageID;
-        _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result);
+        _renderer.sprite = _atlas.GetSprite(spriteName);
         StartCoroutine(GrowingWithTimeIncressing());
     }
 
@@ -142,24 +152,12 @@ public class Plant : MonoBehaviour
             {
                 _info.GrowingTime = 0;
                 var spriteName = _info.GetName() + "_" + ++_info.StageID;
-                //存在未释放旧有sprite资源问题！！！！！！！！！！！
-                _user.Load<Sprite>(spriteName, handle =>
-                {
-                    _renderer.sprite = handle.Result;
-                    //每次生长，更新碰撞体
-                    UpdateColliderShape();
-                });
+                _renderer.sprite = _atlas.GetSprite(spriteName);
+                UpdateColliderShape();
                 if (_info.IsGrown)
                 {
                     EventCenter.Instance.EventTrigger("PlantGrown", _info.LocationIndex);
                     print(spriteName + "has" + "grown!");
-                    
-                    
-                    // var nextIndex = _info.LocationIndex + 1;
-                    // if (nextIndex <= 39 && DataMgr.Instance.AllPlants[nextIndex] == _info)
-                    // {
-                    //     //处理合并逻辑
-                    // }
                     yield break;
                 }
             }
