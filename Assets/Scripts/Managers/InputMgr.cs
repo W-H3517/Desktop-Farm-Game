@@ -24,7 +24,9 @@ public class InputMgr
         {
             Debug.Log("激活种植模式控制系统");
             InputSystem.PlantMode.PlantAction.performed += PlantingModeMgr.Instance.PlantActionCallBack;
+            InputSystem.PlantMode.PlantAction.canceled += PlantingModeMgr.Instance.PlantActionCallBack;
             InputSystem.PlantMode.SelectPlace.performed += PlantingModeMgr.Instance.SelectPlaceCallBack;
+            InputSystem.PlantMode.QuitMode.performed += PlantingModeMgr.Instance.QuitPlantingModeCallBack;
         }
         // if (map == InputSystem.Camera.Get())
         // {
@@ -71,7 +73,9 @@ public class InputMgr
         {
             Debug.Log("禁用种植模式控制系统");
             InputSystem.PlantMode.PlantAction.performed -= PlantingModeMgr.Instance.PlantActionCallBack;
+            InputSystem.PlantMode.PlantAction.canceled -= PlantingModeMgr.Instance.PlantActionCallBack;
             InputSystem.PlantMode.SelectPlace.performed -= PlantingModeMgr.Instance.SelectPlaceCallBack;
+            InputSystem.PlantMode.QuitMode.performed -= PlantingModeMgr.Instance.QuitPlantingModeCallBack;
         }
         // if (map == InputSystem.Camera.Get())
         // {

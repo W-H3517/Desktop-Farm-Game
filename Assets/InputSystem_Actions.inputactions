@@ -1012,6 +1012,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "QuitMode",
+                    "type": "Button",
+                    "id": "c2bdf5c8-16aa-4f6c-aabf-17fb005c6a88",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1019,7 +1028,7 @@
                     "name": "",
                     "id": "0fa726f6-a424-45d1-a251-d73daf5987be",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "PlantAction",
@@ -1034,6 +1043,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "SelectPlace",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "832f034f-f324-41b6-918d-d356e2197eb9",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "QuitMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

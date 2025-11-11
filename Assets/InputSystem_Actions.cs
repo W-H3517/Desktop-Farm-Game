@@ -1098,6 +1098,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""QuitMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""c2bdf5c8-16aa-4f6c-aabf-17fb005c6a88"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1105,7 +1114,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""0fa726f6-a424-45d1-a251-d73daf5987be"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""PlantAction"",
@@ -1120,6 +1129,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""SelectPlace"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""832f034f-f324-41b6-918d-d356e2197eb9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""QuitMode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1216,6 +1236,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_PlantMode = asset.FindActionMap("PlantMode", throwIfNotFound: true);
         m_PlantMode_PlantAction = m_PlantMode.FindAction("PlantAction", throwIfNotFound: true);
         m_PlantMode_SelectPlace = m_PlantMode.FindAction("SelectPlace", throwIfNotFound: true);
+        m_PlantMode_QuitMode = m_PlantMode.FindAction("QuitMode", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -1679,6 +1700,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private List<IPlantModeActions> m_PlantModeActionsCallbackInterfaces = new List<IPlantModeActions>();
     private readonly InputAction m_PlantMode_PlantAction;
     private readonly InputAction m_PlantMode_SelectPlace;
+    private readonly InputAction m_PlantMode_QuitMode;
     /// <summary>
     /// Provides access to input actions defined in input action map "PlantMode".
     /// </summary>
@@ -1698,6 +1720,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlantMode/SelectPlace".
         /// </summary>
         public InputAction @SelectPlace => m_Wrapper.m_PlantMode_SelectPlace;
+        /// <summary>
+        /// Provides access to the underlying input action "PlantMode/QuitMode".
+        /// </summary>
+        public InputAction @QuitMode => m_Wrapper.m_PlantMode_QuitMode;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1730,6 +1756,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @SelectPlace.started += instance.OnSelectPlace;
             @SelectPlace.performed += instance.OnSelectPlace;
             @SelectPlace.canceled += instance.OnSelectPlace;
+            @QuitMode.started += instance.OnQuitMode;
+            @QuitMode.performed += instance.OnQuitMode;
+            @QuitMode.canceled += instance.OnQuitMode;
         }
 
         /// <summary>
@@ -1747,6 +1776,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @SelectPlace.started -= instance.OnSelectPlace;
             @SelectPlace.performed -= instance.OnSelectPlace;
             @SelectPlace.canceled -= instance.OnSelectPlace;
+            @QuitMode.started -= instance.OnQuitMode;
+            @QuitMode.performed -= instance.OnQuitMode;
+            @QuitMode.canceled -= instance.OnQuitMode;
         }
 
         /// <summary>
@@ -2015,5 +2047,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSelectPlace(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "QuitMode" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnQuitMode(InputAction.CallbackContext context);
     }
 }

@@ -14,7 +14,7 @@ public class NewPlantTemp : MonoBehaviour
         button = gameObject.GetComponent<Button>();
         button.onClick.AddListener(() =>
         {
-            PlantingModeMgr.Instance.AddNewPlant(basicInfoID);
+            PlantingModeMgr.Instance.AddNewPlantButton(basicInfoID);
         });
     }
 }

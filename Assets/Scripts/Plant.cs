@@ -14,6 +14,7 @@ public class Plant : MonoBehaviour
     private SpriteRenderer _renderer;
     private ResourceUser _user;
     private PlantsInScene _info;
+    public int BasicInfoID => _info.BasicInfoID;
     private PolygonCollider2D polygonCollider;
     public int LocationIndex => _info.LocationIndex;
     private SpriteAtlas _atlas;
@@ -33,6 +34,8 @@ public class Plant : MonoBehaviour
 
     private void OnPlantMerged(int locationIndex)
     {
+        //不是已种植对象，不可以合并
+        if(gameObject.layer != LayerMask.NameToLayer("Plant")) return;
         //如果被合并但不是父亲，则失活
         if(_info.MergedState is { IsMerged: true, IsFather: false }) gameObject.SetActive(false);
         //如果合并者是自己（被合并是父亲），激活且更新显示
@@ -52,9 +55,7 @@ public class Plant : MonoBehaviour
     
     private void InternalInit(PlantsInScene info)
     {
-        
         var spriteName = _info.GetName() + "_" + _info.StageID;
-        
         _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result );
     }
 
@@ -93,7 +94,6 @@ public class Plant : MonoBehaviour
         }
     }
     
-    
     /// <summary>
     /// 更新碰撞体形状
     /// </summary>
@@ -108,15 +108,6 @@ public class Plant : MonoBehaviour
             _renderer.sprite.GetPhysicsShape(i, path);
             polygonCollider.SetPath(i, path.ToArray());
         }
-    }
-    
-    /// <summary>
-    /// Sprite初始化
-    /// </summary>
-    /// <param name="spriteName"></param>
-    public void Init(string spriteName)
-    {
-        _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result );
     }
     
     /// <summary>
