@@ -88,6 +88,7 @@ public class Plant : MonoBehaviour
                 _atlas = handle.Result;
                 Debug.Log("atlas loaded");
                 _renderer.sprite = _atlas.GetSprite(spriteName);
+                UpdateColliderShape();
             });
             
             StartCoroutine(GrowingWithTimeIncressing());
@@ -130,6 +131,7 @@ public class Plant : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Plant");
         var spriteName = _info.GetName() + "_" + _info.StageID;
         _renderer.sprite = _atlas.GetSprite(spriteName);
+        UpdateColliderShape();
         StartCoroutine(GrowingWithTimeIncressing());
     }
 
