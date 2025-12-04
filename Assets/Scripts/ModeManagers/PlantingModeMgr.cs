@@ -1,26 +1,24 @@
 ﻿using System.Collections;
 using Data;
+using Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace PlantingMode
 {
-    public class PlantingModeMgr
+    public class PlantingModeMgr : BaseManager<PlantingModeMgr>
     {
-        public static PlantingModeMgr Instance => _instance;
-        private static PlantingModeMgr _instance = new PlantingModeMgr();
-        
         private Mouse _mouse;
         private Plant _preLoaded;
         private int _cursorLocationIndex; //记录的“鼠标” 位置。
         private bool _isHolding = false; //记录是否处于按下状态，提供连续种植功能
-        
-        private PlantingModeMgr()
+
+        public PlantingModeMgr()
         {
             _mouse = Mouse.current;
         }
-        
+
         /// <summary>
         /// 种植模式滑动鼠标回调函数，实时更新位置
         /// </summary>
@@ -30,7 +28,7 @@ namespace PlantingMode
             _cursorLocationIndex = (int)Mathf.Floor(Camera.main.ScreenToWorldPoint(_mouse.position.ReadValue()).x) + 20;
             _preLoaded?.PrePlace(_cursorLocationIndex);
         }
-        
+
         /// <summary>
         /// 输入系统左键种植回调函数
         /// </summary>
@@ -44,7 +42,7 @@ namespace PlantingMode
             }
             else if (ctx.canceled)
             {
-                _isHolding =  false;
+                _isHolding = false;
             }
         }
 
@@ -57,6 +55,7 @@ namespace PlantingMode
                     yield return new WaitForFixedUpdate(); //continue之前将控制权交回unity，避免死循环。
                     continue;
                 }
+
                 //_preLoaded.transform.position坐标在左下角，可能不包括collider，因此加一个offset
                 // if (Physics2D.OverlapPoint(_preLoaded.transform.position + Vector3.one * 0.5f, LayerMask.GetMask("Plant")))
                 // {
@@ -69,6 +68,7 @@ namespace PlantingMode
                     yield return new WaitForFixedUpdate(); //continue之前将控制权交回unity，避免死循环。
                     continue;
                 }
+
                 _preLoaded.PlantAction();
                 int basicINfoID = _preLoaded.BasicInfoID;
                 _preLoaded = null;
@@ -76,7 +76,7 @@ namespace PlantingMode
                 yield return new WaitForFixedUpdate(); //等待一帧，为了连续种植。
             }
         }
-        
+
         /// <summary>
         /// 退出种植模式的按键回调函数
         /// </summary>
@@ -100,12 +100,13 @@ namespace PlantingMode
                 GameObject.Destroy(_preLoaded.gameObject);
                 _preLoaded = null;
             }
+
             AddressablesMgr.Instance.LoadResource("Plant", (AsyncOperationHandle<GameObject> handle) =>
             {
                 _preLoaded = GameObject.Instantiate(handle.Result).GetComponent<Plant>();
-                _preLoaded.Init(new PlantsInScene(basicInfoID,4,_cursorLocationIndex),true);
+                _preLoaded.Init(new PlantsInScene(basicInfoID, 4, _cursorLocationIndex), true);
                 _preLoaded.gameObject.layer = LayerMask.NameToLayer("PrePlanting");
-            } );
+            });
             InputMgr.Instance.Enable(InputMgr.Instance.InputSystem.PlantMode.Get());
         }
     }

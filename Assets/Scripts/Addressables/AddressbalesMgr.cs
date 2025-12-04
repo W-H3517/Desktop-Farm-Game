@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using Framework;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class AddressablesMgr
+public class AddressablesMgr : BaseManager<AddressablesMgr>
 {
-    public static AddressablesMgr Instance => _instance;
-    private static AddressablesMgr _instance = new AddressablesMgr();
-    private AddressablesMgr() { }
+    // public static AddressablesMgr Instance => _instance;
+    // private static AddressablesMgr _instance = new AddressablesMgr();
+    // private AddressablesMgr() { }
     
     // 用一个 Entry 把句柄与计数放在一起，便于扩展（如 generation）
     private class Entry

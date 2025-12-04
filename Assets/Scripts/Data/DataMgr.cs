@@ -2,32 +2,31 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Data;
+using Framework;
 using LitJson;
 using UnityEngine;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class DataMgr
+public class DataMgr : BaseManager<DataMgr>
 {
-    private static DataMgr _instance = new DataMgr();
-    public static DataMgr Instance => _instance;
     public readonly PlantBasicInfo[] AllBasicPlantInfo;
 
     //涉及到排序操作，封装起来更安全
     // private readonly List<PlantsInScene> allPlants = new List<PlantsInScene>();
     // public IReadOnlyList<PlantsInScene> AllPlants => allPlants;
 
-    public PlantsInScene[] AllPlants = new PlantsInScene[40];
+    public PlantsInScene[] AllPlants { get; private set; }
     public float WorldBottomLocation { get; }
-    
-    private DataMgr()
+
+    public DataMgr()
     {
         WorldBottomLocation = GetBottomDistance();
         AllBasicPlantInfo = JsonMgr.Instance.LoadConfigurationData<PlantBasicInfo[]>("AllPlantBasicInfo");
-        
+        AllPlants = new PlantsInScene[40];
         var allPlants = JsonMgr.Instance.LoadConfigurationData<List<PlantsInScene>>("AllPlants");
 
         int count = 0;
-        
+
         foreach (PlantsInScene plant in allPlants)
         {
             //放在数组对应位置
@@ -42,7 +41,7 @@ public class DataMgr
             });
         }
     }
-    
+
     public void LoadData()
     {
     }
@@ -61,12 +60,19 @@ public class DataMgr
         AllPlants[plant.LocationIndex] = plant;
     }
 
+    /// <summary>
+    /// 重新加载逻辑未完成
+    /// </summary>
     public void Restart()
     {
-        _instance = new DataMgr();
+        //todo: 重新加载逻辑未完成
+        AllPlants = new PlantsInScene[40];
     }
-    
+
     //获取任务栏高度相关逻辑
+
+    #region 获取任务栏高度相关逻辑
+
     [StructLayout(LayoutKind.Sequential)]
     private struct RECT
     {
@@ -75,7 +81,7 @@ public class DataMgr
         public int Right;
         public int Bottom;
     }
-        
+
     private enum ABEdge : uint
     {
         Left = 0,
@@ -83,7 +89,7 @@ public class DataMgr
         Right = 2,
         Bottom = 3
     }
-        
+
     [StructLayout(LayoutKind.Sequential)]
     private struct APPBARDATA
     {
@@ -94,23 +100,26 @@ public class DataMgr
         public RECT rc;
         public int lParam;
     }
-        
+
     [DllImport("shell32.dll", SetLastError = true)]
     private static extern uint SHAppBarMessage(uint dwMessage, ref APPBARDATA pData);
+
     private const int ABM_GETTASKBARPOS = 5;
-        
+
     private float GetBottomDistance()
     {
         APPBARDATA data = new APPBARDATA();
         data.cbSize = (uint)Marshal.SizeOf(data);
         SHAppBarMessage(ABM_GETTASKBARPOS, ref data);
         int taskbarHeightPx;
-        if (data.uEdge == ABEdge.Bottom )
-            taskbarHeightPx= data.rc.Bottom - data.rc.Top;
+        if (data.uEdge == ABEdge.Bottom)
+            taskbarHeightPx = data.rc.Bottom - data.rc.Top;
         else
-            taskbarHeightPx= 0;
-        float normalizedHeight = 1.0f * taskbarHeightPx / Screen.height ;
+            taskbarHeightPx = 0;
+        float normalizedHeight = 1.0f * taskbarHeightPx / Screen.height;
         float worldHeight = Camera.main.orthographicSize * 2;
         return worldHeight * normalizedHeight - Camera.main.orthographicSize;
     }
+
+    #endregion
 }

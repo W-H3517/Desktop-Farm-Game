@@ -1,0 +1,104 @@
+﻿using PlantingMode;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+namespace Framework
+{
+    public class InputMgr : BaseManager<InputMgr>
+    {
+        public InputSystem_Actions InputSystem;
+
+        public InputMgr()
+        {
+            Debug.Log("InputMgr");
+            InputSystem = new InputSystem_Actions();
+            InputSystem.Enable();
+        }
+
+        public void Enable(InputActionMap map)
+        {
+            map.Enable();
+            if (map == InputSystem.PlantMode.Get())
+            {
+                Debug.Log("激活种植模式控制系统");
+                InputSystem.PlantMode.PlantAction.performed += PlantingModeMgr.Instance.PlantActionCallBack;
+                InputSystem.PlantMode.PlantAction.canceled += PlantingModeMgr.Instance.PlantActionCallBack;
+                InputSystem.PlantMode.SelectPlace.performed += PlantingModeMgr.Instance.SelectPlaceCallBack;
+                InputSystem.PlantMode.QuitMode.performed += PlantingModeMgr.Instance.QuitPlantingModeCallBack;
+            }
+            // if (map == InputSystem.Camera.Get())
+            // {
+            //     Debug.Log("激活camera旋转控制系统");
+            //     InputSystem.Camera.Rotate.performed += _mainCamera.RotatePerformed;
+            //     InputSystem.Camera.Rotate.canceled += _mainCamera.RotateCanceled;
+            // }
+            // if (map == InputSystem.Combat.Get())
+            // {
+            //     Debug.Log("激活战斗控制系统");
+            //     InputSystem.Combat.ReleaseSkill.performed += SkillArea.Instance.ReleaseSkill;
+            // }
+            // if (map == InputSystem.UI.Get())
+            // {
+            //     Debug.Log("激活UI按键");
+            //     InputSystem.UI.Click.performed += DialogueMgr.Instance.NextSentence;
+            // }
+        }
+
+        // public void Enable(InputActionMap map, InteractiveTrigger trigger)
+        // {
+        //     map.Enable();
+        //     if (map == InputSystem.Interact.Get())
+        //     {
+        //         InputSystem.Interact.Interact.performed += trigger.TriggerDialogue;
+        //         InputSystem.Interact.StartCombat.performed += trigger.TriggerCombat;
+        //     }
+        // }
+        //
+        // public void Disable(InputActionMap map, InteractiveTrigger trigger)
+        // {
+        //     map.Disable();
+        //     if (map == InputSystem.Interact.Get())
+        //     {
+        //         InputSystem.Interact.Interact.performed -= trigger.TriggerDialogue;
+        //         InputSystem.Interact.StartCombat.performed -= trigger.TriggerCombat;
+        //     }
+        // }
+        //
+        public void Disable(InputActionMap map)
+        {
+            map.Disable();
+            if (map == InputSystem.PlantMode.Get())
+            {
+                Debug.Log("禁用种植模式控制系统");
+                InputSystem.PlantMode.PlantAction.performed -= PlantingModeMgr.Instance.PlantActionCallBack;
+                InputSystem.PlantMode.PlantAction.canceled -= PlantingModeMgr.Instance.PlantActionCallBack;
+                InputSystem.PlantMode.SelectPlace.performed -= PlantingModeMgr.Instance.SelectPlaceCallBack;
+                InputSystem.PlantMode.QuitMode.performed -= PlantingModeMgr.Instance.QuitPlantingModeCallBack;
+            }
+            // if (map == InputSystem.Camera.Get())
+            // {
+            //     Debug.Log("禁用camera旋转控制系统");
+            //     InputSystem.Camera.Rotate.performed -= _mainCamera.RotatePerformed;
+            //     InputSystem.Camera.Rotate.canceled -= _mainCamera.RotateCanceled;
+            // }
+            // if (map == InputSystem.Combat.Get())
+            // {
+            //     Debug.Log("禁用战斗控制系统");
+            //     InputSystem.Combat.ReleaseSkill.performed -= SkillArea.Instance.ReleaseSkill;
+            // }
+            // if (map == InputSystem.UI.Get())
+            // {
+            //     Debug.Log("禁用UI按键");
+            //     InputSystem.UI.Click.performed -= DialogueMgr.Instance.NextSentence;
+            // }
+        }
+
+        /// <summary>
+        /// 在场景加载完后调用
+        /// </summary>
+        public void Restart()
+        {
+            InputSystem = new InputSystem_Actions();
+        }
+    }
+}

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Data;
+using Framework;
 using Tools;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -18,30 +19,30 @@ public class Plant : MonoBehaviour
     private PolygonCollider2D polygonCollider;
     public int LocationIndex => _info.LocationIndex;
     private SpriteAtlas _atlas;
-    
+
     private void Awake()
     {
         _renderer = GetComponent<SpriteRenderer>();
         _user = GetComponent<ResourceUser>();
         polygonCollider = GetComponent<PolygonCollider2D>();
-        EventCenter.Instance.AddEventListener<int>("PlantMerged",OnPlantMerged);
+        EventCenter.Instance.AddEventListener<int>(E_EventList.PlantMerged, OnPlantMerged);
     }
 
     private void OnDestroy()
     {
-        EventCenter.Instance.RemoveEventListener<int>("PlantMerged",OnPlantMerged);
+        EventCenter.Instance.RemoveEventListener<int>(E_EventList.PlantMerged, OnPlantMerged);
     }
 
     private void OnPlantMerged(int locationIndex)
     {
         //不是已种植对象，不可以合并
-        if(gameObject.layer != LayerMask.NameToLayer("Plant")) return;
+        if (gameObject.layer != LayerMask.NameToLayer("Plant")) return;
         //如果被合并但不是父亲，则失活
-        if(_info.MergedState is { IsMerged: true, IsFather: false }) gameObject.SetActive(false);
+        if (_info.MergedState is { IsMerged: true, IsFather: false }) gameObject.SetActive(false);
         //如果合并者是自己（被合并是父亲），激活且更新显示
-        else if(_info.LocationIndex == locationIndex)
+        else if (_info.LocationIndex == locationIndex)
         {
-            if(!gameObject.activeSelf) gameObject.SetActive(true);
+            if (!gameObject.activeSelf) gameObject.SetActive(true);
             var spriteName = _info.GetName() + "_" + 3;
             _renderer.sprite = _atlas.GetSprite(spriteName);
             UpdateColliderShape();
@@ -49,14 +50,14 @@ public class Plant : MonoBehaviour
         //如果成熟，且未被合并
         else if (_info.IsGrown && !_info.MergedState.IsMerged)
         {
-            if(!gameObject.activeSelf) gameObject.SetActive(true);
+            if (!gameObject.activeSelf) gameObject.SetActive(true);
         }
     }
-    
+
     private void InternalInit(PlantsInScene info)
     {
         var spriteName = _info.GetName() + "_" + _info.StageID;
-        _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result );
+        _user.Load<Sprite>(spriteName, handle => _renderer.sprite = handle.Result);
     }
 
     /// <summary>
@@ -72,7 +73,7 @@ public class Plant : MonoBehaviour
         if (isPlanting)
         {
             //种植模式预览效果
-            var spriteName = _info.GetName() + "_" + (3+info.GetStageCount());
+            var spriteName = _info.GetName() + "_" + (3 + info.GetStageCount());
             _user.Load<SpriteAtlas>("PlantStatesSprites", (handle) =>
             {
                 _atlas = handle.Result;
@@ -90,11 +91,11 @@ public class Plant : MonoBehaviour
                 _renderer.sprite = _atlas.GetSprite(spriteName);
                 UpdateColliderShape();
             });
-            
+
             StartCoroutine(GrowingWithTimeIncressing());
         }
     }
-    
+
     /// <summary>
     /// 更新碰撞体形状
     /// </summary>
@@ -110,7 +111,7 @@ public class Plant : MonoBehaviour
             polygonCollider.SetPath(i, path.ToArray());
         }
     }
-    
+
     /// <summary>
     /// 放置植物位置实时改变预览
     /// </summary>
@@ -120,7 +121,7 @@ public class Plant : MonoBehaviour
         _info.LocationIndex = locationIndex;
         transform.position = locationIndex.LocationIndexToVector2();
     }
-    
+
     /// <summary>
     /// 种植动作的回调
     /// </summary>
@@ -149,13 +150,13 @@ public class Plant : MonoBehaviour
                 UpdateColliderShape();
                 if (_info.IsGrown)
                 {
-                    EventCenter.Instance.EventTrigger("PlantGrown", _info.LocationIndex);
+                    EventCenter.Instance.EventTrigger(E_EventList.PlantGrown, _info.LocationIndex);
                     print(spriteName + "has" + "grown!");
                     yield break;
                 }
             }
+
             yield return new WaitForSeconds(1f);
         }
     }
-
 }
