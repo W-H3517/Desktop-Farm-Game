@@ -116,7 +116,7 @@ public class DataMgr : BaseManager<DataMgr>
             taskbarHeightPx = data.rc.Bottom - data.rc.Top;
         else
             taskbarHeightPx = 0;
-        float normalizedHeight = 1.0f * taskbarHeightPx / Screen.height;
+        float normalizedHeight = 1.0f * (taskbarHeightPx + 2) / Screen.height;
         float worldHeight = Camera.main.orthographicSize * 2;
         return worldHeight * normalizedHeight - Camera.main.orthographicSize;
     }
