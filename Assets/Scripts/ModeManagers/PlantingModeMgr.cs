@@ -48,11 +48,12 @@ namespace PlantingMode
 
         IEnumerator Planting()
         {
+            var waitForFixedUpdate = new WaitForFixedUpdate();
             while (_isHolding) //按住状态，连续种植
             {
-                if (TransparentWindow.Instance != null && TransparentWindow.Instance.uiHit)
+                if (DesktopWindowController.Primary != null && DesktopWindowController.Primary.IsPointerOverUI)
                 {
-                    yield return new WaitForFixedUpdate(); //continue之前将控制权交回unity，避免死循环。
+                    yield return waitForFixedUpdate; //continue之前将控制权交回unity，避免死循环。
                     continue;
                 }
 
@@ -65,7 +66,7 @@ namespace PlantingMode
                 if (DataMgr.Instance.AllPlants[_preLoaded.LocationIndex] != null)
                 {
                     Debug.LogWarning("Location occupied");
-                    yield return new WaitForFixedUpdate(); //continue之前将控制权交回unity，避免死循环。
+                    yield return waitForFixedUpdate; //continue之前将控制权交回unity，避免死循环。
                     continue;
                 }
 
@@ -73,7 +74,7 @@ namespace PlantingMode
                 int basicINfoID = _preLoaded.BasicInfoID;
                 _preLoaded = null;
                 AddNewPlantButton(basicINfoID); //放置完成后，立马添加新的待放置物品。
-                yield return new WaitForFixedUpdate(); //等待一帧，为了连续种植。
+                yield return waitForFixedUpdate; //等待一帧，为了连续种植。
             }
         }
 
