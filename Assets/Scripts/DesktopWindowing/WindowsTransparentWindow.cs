@@ -3,7 +3,9 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-public sealed class WindowsLayeredWindowBackend : IWindowBackend
+namespace DesktopWindowing
+{
+public sealed class WindowsTransparentWindow : IDisposable
 {
 #if UNITY_STANDALONE_WIN && !UNITY_EDITOR
     private const int GWL_EXSTYLE = -20;
@@ -82,13 +84,13 @@ public sealed class WindowsLayeredWindowBackend : IWindowBackend
     private IntPtr _windowHandle;
     private IntPtr _originalWndProc;
     private int _originalExStyle;
-    private Func<Vector2, HitTestResult> _hitTestCallback;
+    private Func<Vector2, HitTestKind> _hitTestCallback;
     private WndProcDelegate _wndProcDelegate;
     private bool _passthroughEnabled;
 
     public bool IsInitialized { get; private set; }
 
-    public bool Initialize(Func<Vector2, HitTestResult> hitTestCallback, bool enableTransparency, bool keepTopmost)
+    public bool Initialize(Func<Vector2, HitTestKind> hitTestCallback, bool enableTransparency, bool keepTopmost)
     {
         if (IsInitialized)
         {
@@ -200,8 +202,8 @@ public sealed class WindowsLayeredWindowBackend : IWindowBackend
         {
             Vector2 screenPosition = DecodeScreenPoint(lParam);
             Vector2 unityScreenPosition = ConvertToUnityScreenPosition(hWnd, screenPosition);
-            HitTestResult result = _hitTestCallback(unityScreenPosition);
-            return result.IsInteractive ? new IntPtr(HTCLIENT) : CallWindowProc(_originalWndProc, hWnd, msg, wParam, lParam);
+            HitTestKind hitKind = _hitTestCallback(unityScreenPosition);
+            return hitKind != HitTestKind.None ? new IntPtr(HTCLIENT) : CallWindowProc(_originalWndProc, hWnd, msg, wParam, lParam);
         }
 
         return CallWindowProc(_originalWndProc, hWnd, msg, wParam, lParam);
@@ -260,7 +262,7 @@ public sealed class WindowsLayeredWindowBackend : IWindowBackend
 #else
     public bool IsInitialized { get; private set; }
 
-    public bool Initialize(Func<Vector2, HitTestResult> hitTestCallback, bool enableTransparency, bool keepTopmost)
+    public bool Initialize(Func<Vector2, HitTestKind> hitTestCallback, bool enableTransparency, bool keepTopmost)
     {
         return false;
     }
@@ -279,4 +281,5 @@ public sealed class WindowsLayeredWindowBackend : IWindowBackend
         Shutdown();
     }
 #endif
+}
 }

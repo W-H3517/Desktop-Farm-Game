@@ -1,188 +1,189 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public sealed class DesktopWindowController : MonoBehaviour
+namespace DesktopWindowing
 {
-    public static DesktopWindowController Primary { get; private set; }
-
-    [SerializeField] private Camera targetCamera;
-    [SerializeField] private bool enableTransparency = true;
-    [SerializeField] private bool keepTopmost = true;
-    [SerializeField] private LayerMask interactable2DMask = Physics2D.DefaultRaycastLayers;
-    [SerializeField] private bool enableInEditor;
-    [SerializeField] private bool logDiagnostics;
-    [SerializeField] private bool enableClickThrough = true;
-
-    private IHitTestService _hitTestService;
-    private IWindowBackend _windowBackend;
-    private int _initializeAttempts;
-    private bool _gaveUpOnBackend;
-
-    public bool IsPointerOverUnityInteractive { get; private set; }
-    public bool IsPointerOverUI => LastHitResult.IsUI;
-    public bool IsPointerOverPhysics2D => LastHitResult.IsPhysics2D;
-    public HitTestKind LastHitKind => LastHitResult.Kind;
-    public HitTestResult LastHitResult { get; private set; } = HitTestResult.None;
-
-    private void Awake()
+    public sealed class DesktopWindowController : MonoBehaviour
     {
-        if (targetCamera == null)
+        public static DesktopWindowController Primary { get; private set; }
+
+        [SerializeField] private Camera targetCamera;
+        [SerializeField] private bool enableTransparency = true;
+        [SerializeField] private bool keepTopmost = true;
+        [SerializeField] private LayerMask interactable2DMask = Physics2D.DefaultRaycastLayers;
+        [SerializeField] private bool enableInEditor;
+        [SerializeField] private bool logDiagnostics;
+        [SerializeField] private bool enableClickThrough = true;
+
+        private PointerHitTester _pointerHitTester;
+        private WindowsTransparentWindow _window;
+        private int _initializeAttempts;
+        private bool _gaveUpOnWindow;
+
+        public bool IsPointerOverUnityInteractive { get; private set; }
+        public bool IsPointerOverUI => LastHitKind == HitTestKind.UI;
+        public bool IsPointerOverPhysics2D => LastHitKind == HitTestKind.Physics2D;
+        public HitTestKind LastHitKind { get; private set; } = HitTestKind.None;
+
+        private void Awake()
         {
-            targetCamera = GetComponent<Camera>();
-        }
-    }
-
-    private void OnEnable()
-    {
-        Primary = this;
-        _hitTestService = new UnityHitTestService(targetCamera, interactable2DMask);
-        _windowBackend = new WindowsLayeredWindowBackend();
-        _initializeAttempts = 0;
-        _gaveUpOnBackend = false;
-    }
-
-    private void Start()
-    {
-        LogDiagnosticsIfNeeded();
-        TryInitializeBackend();
-    }
-
-    private void Update()
-    {
-        UpdatePointerState();
-
-        if (_windowBackend != null && _windowBackend.IsInitialized)
-        {
-            _windowBackend.SetPassthroughEnabled(enableClickThrough && !IsPointerOverUnityInteractive);
+            if (targetCamera == null)
+            {
+                targetCamera = GetComponent<Camera>();
+            }
         }
 
-        if (!_gaveUpOnBackend && !_windowBackend.IsInitialized)
+        private void OnEnable()
         {
-            TryInitializeBackend();
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (Primary == this)
-        {
-            Primary = null;
+            Primary = this;
+            _pointerHitTester = new PointerHitTester(targetCamera, interactable2DMask);
+            _window = new WindowsTransparentWindow();
+            _initializeAttempts = 0;
+            _gaveUpOnWindow = false;
         }
 
-        ShutdownBackend();
-        ResetPointerState();
-    }
-
-    private void OnDestroy()
-    {
-        if (Primary == this)
+        private void Start()
         {
-            Primary = null;
-        }
-    }
-
-    public HitTestResult EvaluateHitTest(Vector2 screenPosition)
-    {
-        if (_hitTestService == null)
-        {
-            LastHitResult = HitTestResult.None;
-            IsPointerOverUnityInteractive = false;
-            return LastHitResult;
+            LogDiagnosticsIfNeeded();
+            TryInitializeWindow();
         }
 
-        LastHitResult = _hitTestService.HitTest(screenPosition);
-        IsPointerOverUnityInteractive = LastHitResult.IsInteractive;
-        return LastHitResult;
-    }
+        private void Update()
+        {
+            UpdatePointerState();
 
-    private void UpdatePointerState()
-    {
+            if (_window != null && _window.IsInitialized)
+            {
+                _window.SetPassthroughEnabled(enableClickThrough && !IsPointerOverUnityInteractive);
+            }
+
+            if (!_gaveUpOnWindow && _window != null && !_window.IsInitialized)
+            {
+                TryInitializeWindow();
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (Primary == this)
+            {
+                Primary = null;
+            }
+
+            ShutdownWindow();
+            ResetPointerState();
+        }
+
+        private void OnDestroy()
+        {
+            if (Primary == this)
+            {
+                Primary = null;
+            }
+        }
+
+        public HitTestKind EvaluateHitTest(Vector2 screenPosition)
+        {
+            if (_pointerHitTester == null)
+            {
+                ResetPointerState();
+                return LastHitKind;
+            }
+
+            LastHitKind = _pointerHitTester.GetHitKind(screenPosition);
+            IsPointerOverUnityInteractive = LastHitKind != HitTestKind.None;
+            return LastHitKind;
+        }
+
+        private void UpdatePointerState()
+        {
 #if UNITY_EDITOR
-        if (!enableInEditor)
-        {
-            ResetPointerState();
-            return;
-        }
+            if (!enableInEditor)
+            {
+                ResetPointerState();
+                return;
+            }
 #endif
 
-        if (Mouse.current == null)
-        {
-            ResetPointerState();
-            return;
+            if (Mouse.current == null)
+            {
+                ResetPointerState();
+                return;
+            }
+
+            EvaluateHitTest(Mouse.current.position.ReadValue());
         }
 
-        EvaluateHitTest(Mouse.current.position.ReadValue());
-    }
-
-    private void ResetPointerState()
-    {
-        LastHitResult = HitTestResult.None;
-        IsPointerOverUnityInteractive = false;
-    }
-
-    private void TryInitializeBackend()
-    {
-        if (_windowBackend == null || _windowBackend.IsInitialized || !IsBackendAllowed())
+        private void ResetPointerState()
         {
-            return;
+            LastHitKind = HitTestKind.None;
+            IsPointerOverUnityInteractive = false;
         }
 
-        _initializeAttempts++;
-        bool initialized = false;
-
-        try
+        private void TryInitializeWindow()
         {
-            initialized = _windowBackend.Initialize(EvaluateHitTest, enableTransparency, keepTopmost);
+            if (_window == null || _window.IsInitialized || !IsWindowAllowed())
+            {
+                return;
+            }
+
+            _initializeAttempts++;
+            bool initialized;
+
+            try
+            {
+                initialized = _window.Initialize(EvaluateHitTest, enableTransparency, keepTopmost);
+            }
+            catch (System.Exception ex)
+            {
+                _gaveUpOnWindow = true;
+                Debug.LogWarning($"DesktopWindowController failed to initialize the window: {ex.Message}", this);
+                return;
+            }
+
+            if (initialized)
+            {
+                return;
+            }
+
+            if (_initializeAttempts >= 120)
+            {
+                _gaveUpOnWindow = true;
+                Debug.LogWarning("DesktopWindowController could not initialize the Windows transparent window. The app will continue without click-through.", this);
+            }
         }
-        catch (System.Exception ex)
+
+        private void ShutdownWindow()
         {
-            _gaveUpOnBackend = true;
-            Debug.LogWarning($"DesktopWindowController failed to initialize window backend: {ex.Message}", this);
-            return;
+            if (_window == null)
+            {
+                return;
+            }
+
+            _window.Shutdown();
+            _window.Dispose();
+            _window = null;
         }
 
-        if (initialized)
+        private bool IsWindowAllowed()
         {
-            return;
-        }
-
-        if (_initializeAttempts >= 120)
-        {
-            _gaveUpOnBackend = true;
-            Debug.LogWarning("DesktopWindowController could not initialize the Windows window backend. The app will continue without transparency hit-testing.", this);
-        }
-    }
-
-    private void ShutdownBackend()
-    {
-        if (_windowBackend == null)
-        {
-            return;
-        }
-
-        _windowBackend.Shutdown();
-        _windowBackend.Dispose();
-        _windowBackend = null;
-    }
-
-    private bool IsBackendAllowed()
-    {
 #if UNITY_STANDALONE_WIN && !UNITY_EDITOR
-        return true;
+            return true;
 #else
-        return false;
+            return false;
 #endif
-    }
-
-    private void LogDiagnosticsIfNeeded()
-    {
-        if (!logDiagnostics)
-        {
-            return;
         }
 
-        string cameraName = targetCamera != null ? targetCamera.name : "<null>";
-        string eventSystemState = UnityEngine.EventSystems.EventSystem.current != null ? "present" : "missing";
-        Debug.Log($"DesktopWindowController diagnostics: camera={cameraName}, eventSystem={eventSystemState}, enableTransparency={enableTransparency}, keepTopmost={keepTopmost}", this);
+        private void LogDiagnosticsIfNeeded()
+        {
+            if (!logDiagnostics)
+            {
+                return;
+            }
+
+            string cameraName = targetCamera != null ? targetCamera.name : "<null>";
+            string eventSystemState = UnityEngine.EventSystems.EventSystem.current != null ? "present" : "missing";
+            Debug.Log($"DesktopWindowController diagnostics: camera={cameraName}, eventSystem={eventSystemState}, enableTransparency={enableTransparency}, keepTopmost={keepTopmost}", this);
+        }
     }
 }
